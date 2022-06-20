@@ -43,7 +43,7 @@ on:
       process-list: # code-name 과 통합 될 수 있음
         description: exact name of process, using start and kill
         required: false
-        default: ''
+        default: ' '
         type: string
       deploy-message:
         description: 슬랙에 배포 메세지를 보낼 때, 배포 내용과 유의사항을 입력
