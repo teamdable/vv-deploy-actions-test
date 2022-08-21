@@ -32,7 +32,7 @@ def get_vpn_ip(include_api_live_inventory: bool,
                exclude_inventory_id: List,
                stdout_json: bool = False):
     allow_devices = split_string_into_list(allow_devices)
-    exclude_devices = split_string_into_list(exclude_devices)
+    exclude_devices = split_setring_into_list(exclude_devices)
 
     edge_info = get_edge_info(include_api_live_inventory=include_api_live_inventory,
                               allow_devices=allow_devices,
