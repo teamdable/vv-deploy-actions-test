@@ -11,11 +11,13 @@ set otp_code [exec oathtool --totp -b ${otp}]
 
 set timeout 20
 spawn /usr/bin/ssh -o StrictHostKeyChecking=no ${user}@${hostname}
-expect {
+expect_before {
         "assword:" {
                 send "${password}\n"
                 exp_continue
         }
+}
+expect {
         "Verification code:" {
                 send "${otp_code}\n"
         }
@@ -27,7 +29,9 @@ expect "${user}" {
 
 expect "${user}" {
             send "set +o history\n"
-            send "backup-and-unzip --zip-filename ${zip_file_name} --parent-dir ${parent_dir} --code-name ${code_name} --password ${password} \n"
+            send "sudo rm -rf ${parent_dir}/.${code_name}-old \n"
+            send "sudo mv ${parent_dir}/${code_name} ${parent_dir}/.${code_name}-old \n"
+            send "unzip -qo /tmp/${zip_file_name} -d ${parent_dir}/${code_name}"
             send "set -o history\n"
 }
 
