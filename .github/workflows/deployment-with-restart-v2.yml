@@ -73,7 +73,7 @@ jobs:
       - name: Checkout the action repository
         uses: actions/checkout@v2
         with:
-          repository: teamdable/vv-deploy-actions
+          repository: teamdable/vv-deploy-actions-test
           path: action/
   
   Inform-slack-of-start:
